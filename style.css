@@ -1,0 +1,75 @@
+/* Vega PROD — extras on top of Tailwind CDN */
+:root {
+  scroll-behavior: smooth;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Reveal-on-scroll initial state (JS adds .is-visible) */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-reveal-delay {
+  transition-delay: 0.15s;
+}
+
+/* Stagger gallery items */
+.gallery-item {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.gallery-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero intro */
+.hero-inner {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-inner.is-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header logo shrink */
+.is-scrolled #header-logo {
+  height: 3rem; /* h-12 */
+}
+
+
+
+/* Press carousel track */
+.press-track {
+  display: flex;
+  transition: transform 0.5s ease-out;
+}
+
+.press-track > div {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+/* Menu panel visibility */
+.menu-panel {
+  display: none;
+}
+
+.menu-panel.is-active {
+  display: block;
+}
