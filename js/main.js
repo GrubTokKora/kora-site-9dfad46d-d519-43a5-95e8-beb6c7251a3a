@@ -160,6 +160,137 @@ window.VEGA_CONFIG = {
   observeReveals('.js-reveal', { threshold: 0.2 });
   observeReveals('.gallery-item', { threshold: 0.08 });
 
+  /* Gallery lightbox */
+  (function initGalleryLightbox() {
+    var galleryRoot = document.getElementById('gallery');
+    var lightbox = document.querySelector('[data-gallery-lightbox]');
+    if (!galleryRoot || !lightbox) return;
+
+    var items = galleryRoot.querySelectorAll('[data-gallery-item]');
+    if (!items.length) return;
+
+    var lbImg = lightbox.querySelector('[data-gallery-lightbox-img]');
+    var lbCaption = lightbox.querySelector('[data-gallery-caption]');
+    var lbCounter = lightbox.querySelector('[data-gallery-counter]');
+    var btnClose = lightbox.querySelector('[data-gallery-close]');
+    var btnPrev = lightbox.querySelector('[data-gallery-prev]');
+    var btnNext = lightbox.querySelector('[data-gallery-next]');
+    var backdrop = lightbox.querySelector('[data-gallery-backdrop]');
+    var stage = lightbox.querySelector('.gallery-lightbox__stage');
+
+    var slides = [];
+    var currentIndex = 0;
+    var lastFocus = null;
+    var touchStartX = 0;
+    var touchStartY = 0;
+
+    items.forEach(function (item, i) {
+      var img = item.querySelector('img');
+      if (!img) return;
+      slides.push({ src: img.src, alt: img.alt || '' });
+      item.addEventListener('click', function () {
+        openAt(i);
+      });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openAt(i);
+        }
+      });
+    });
+
+    if (!slides.length) return;
+
+    function showSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+      var slide = slides[currentIndex];
+      if (lbImg) {
+        lbImg.src = slide.src;
+        lbImg.alt = slide.alt;
+      }
+      if (lbCaption) lbCaption.textContent = slide.alt;
+      if (lbCounter) {
+        lbCounter.textContent = currentIndex + 1 + ' / ' + slides.length;
+      }
+    }
+
+    function openAt(index) {
+      lastFocus = document.activeElement;
+      showSlide(index);
+      lightbox.hidden = false;
+      lightbox.setAttribute('aria-hidden', 'false');
+      lightbox.classList.add('is-open');
+      document.body.classList.add('gallery-lightbox-open');
+      requestAnimationFrame(function () {
+        if (btnClose) btnClose.focus();
+      });
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gallery-lightbox-open');
+      if (lbImg) lbImg.removeAttribute('src');
+      window.setTimeout(function () {
+        lightbox.hidden = true;
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+          lastFocus.focus();
+        }
+      }, 300);
+    }
+
+    function goPrev() {
+      showSlide(currentIndex - 1);
+    }
+
+    function goNext() {
+      showSlide(currentIndex + 1);
+    }
+
+    if (btnClose) btnClose.addEventListener('click', closeLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
+    if (btnPrev) btnPrev.addEventListener('click', goPrev);
+    if (btnNext) btnNext.addEventListener('click', goNext);
+
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNext();
+      }
+    });
+
+    if (stage) {
+      stage.addEventListener(
+        'touchstart',
+        function (e) {
+          if (!lightbox.classList.contains('is-open') || !e.touches.length) return;
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        },
+        { passive: true }
+      );
+      stage.addEventListener(
+        'touchend',
+        function (e) {
+          if (!lightbox.classList.contains('is-open') || !e.changedTouches.length) return;
+          var dx = e.changedTouches[0].clientX - touchStartX;
+          var dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+          if (dx > 0) goPrev();
+          else goNext();
+        },
+        { passive: true }
+      );
+    }
+  })();
+
   /* Hours banner */
   var hoursBanner = document.querySelector('[data-hours-banner]');
   if (hoursBanner) {
