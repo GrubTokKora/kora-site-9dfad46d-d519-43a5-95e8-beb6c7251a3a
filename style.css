@@ -90,14 +90,26 @@
 
 /* Mobile header logo — smaller than desktop */
 .site-header-logo--mobile {
-  height: 2rem;
-  max-height: 2rem;
+  height: 2.5rem;
+  max-height: 2.5rem;
 }
 
 .is-scrolled .site-header-logo--mobile {
-  height: 1.75rem;
-  max-height: 1.75rem;
+  height: 2.4rem;
+  max-height: 2.4rem;
   transition: height 0.5s ease, max-height 0.5s ease;
+}
+
+@media (max-width: 365px) {
+  .site-header-logo--mobile {
+    height: 2rem;
+    max-height: 2rem;
+  }
+
+  .is-scrolled .site-header-logo--mobile {
+    height: 1.9rem;
+    max-height: 1.9rem;
+  }
 }
 
 /* ORDER NOW partner buttons */
