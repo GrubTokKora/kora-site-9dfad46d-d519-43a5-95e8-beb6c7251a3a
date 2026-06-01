@@ -73,6 +73,23 @@ window.VEGA_CONFIG = {
     });
   }
 
+  /* Hero poster → muted video when ready */
+  const heroMedia = document.querySelector('.hero-media');
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroMedia && heroVideo) {
+    heroVideo.muted = true;
+    function startHeroVideo() {
+      heroVideo.play().then(function () {
+        heroMedia.classList.add('is-video-playing');
+      }).catch(function () {});
+    }
+    if (heroVideo.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+      startHeroVideo();
+    } else {
+      heroVideo.addEventListener('canplaythrough', startHeroVideo, { once: true });
+    }
+  }
+
   /* Intersection reveals */
   function observeReveals(selector, options) {
     var els = document.querySelectorAll(selector);

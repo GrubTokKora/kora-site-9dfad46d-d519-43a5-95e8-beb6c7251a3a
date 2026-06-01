@@ -47,6 +47,25 @@
   transform: translateY(0);
 }
 
+/* Hero poster → video */
+.hero-poster {
+  transition: opacity 0.8s ease;
+}
+
+.hero-video {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-media.is-video-playing .hero-poster {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-media.is-video-playing .hero-video {
+  opacity: 1;
+}
+
 /* Header logo shrink */
 .is-scrolled #header-logo {
   height: 3rem; /* h-12 */
