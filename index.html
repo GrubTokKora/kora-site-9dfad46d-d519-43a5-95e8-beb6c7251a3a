@@ -64,7 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body class="bg-background text-foreground font-sans antialiased min-h-screen">
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" data-site-header="">
 <div class="relative">
-<div class="absolute top-4 right-4 flex items-center gap-3 z-[60]">
+<div class="absolute top-4 right-4 hidden lg:flex items-center gap-3 z-[60]">
 <a aria-label="Facebook" class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white hover:text-vega-purple transition-all duration-300" href="https://www.facebook.com/vegamexican" rel="noopener noreferrer" target="_blank">
 <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
 </a>
@@ -75,7 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="container mx-auto px-4 py-2">
 <div class="hidden lg:flex flex-col items-center">
 <a class="mb-2" href="index.html">
-<img alt="VEGA Mexican Cuisine Logo" class="h-16 w-auto transition-all duration-500" id="header-logo" src="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3a/medialibrary/1780337580_3ncx8t.png"/>
+<img alt="VEGA Mexican Cuisine Logo" class="site-header-logo" id="header-logo" src="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3a/medialibrary/1780337580_3ncx8t.png"/>
 </a>
 <ul class="flex items-center gap-1 flex-wrap justify-center">
 <li><a class="px-3 py-2 text-md text-white font-semibold hover:text-primary transition-colors duration-300 tracking-wide" href="index.html">HOME</a></li>
@@ -92,8 +92,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </div>
-<div class="lg:hidden flex items-center justify-between">
-<button aria-label="Toggle menu" class="text-white p-2 z-[60]" data-mobile-menu-btn="" type="button">
+<div class="lg:hidden flex items-center justify-between gap-3">
+<button aria-label="Toggle menu" class="text-white p-2 z-[60] shrink-0" data-mobile-menu-btn="" type="button">
 <span data-icon-menu="">
 <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
 </span>
@@ -101,10 +101,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
 </span>
 </button>
-<a href="index.html">
-<img alt="VEGA Mexican Cuisine Logo" class="h-12 w-auto" src="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3a/medialibrary/1780337580_3ncx8t.png"/>
+<a class="ml-auto shrink-0" href="index.html">
+<img alt="VEGA Mexican Cuisine Logo" class="site-header-logo site-header-logo--mobile" src="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3a/medialibrary/1780337580_3ncx8t.png"/>
 </a>
-<div class="w-10"></div> <!-- Spacer to center logo -->
 </div>
 <div class="hidden lg:hidden mt-4 pb-4 bg-vega-bg-dark/95 rounded-lg" data-mobile-menu="">
 <ul class="flex flex-col items-center gap-2">

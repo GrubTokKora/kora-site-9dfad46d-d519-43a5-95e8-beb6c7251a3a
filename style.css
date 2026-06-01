@@ -69,12 +69,31 @@
   opacity: 1;
 }
 
-/* Header logo shrink */
-.is-scrolled #header-logo {
-  height: 3rem; /* h-12 */
+/* Header logo — same size on desktop & mobile (h-9 is not in compiled Tailwind) */
+.site-header-logo {
+  height: 3rem;
+  width: auto;
+  max-height: 3rem;
+  transition: height 0.5s ease;
 }
 
+.is-scrolled .site-header-logo {
+  height: 2.5rem;
+  max-height: 2.5rem;
+  transition: height 0.5s ease, max-height 0.5s ease;
+}
 
+/* Mobile header logo — smaller than desktop */
+.site-header-logo--mobile {
+  height: 2rem;
+  max-height: 2rem;
+}
+
+.is-scrolled .site-header-logo--mobile {
+  height: 1.75rem;
+  max-height: 1.75rem;
+  transition: height 0.5s ease, max-height 0.5s ease;
+}
 
 /* Press carousel track */
 .press-track {
