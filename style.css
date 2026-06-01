@@ -55,6 +55,9 @@
 .hero-video {
   opacity: 0;
   transition: opacity 0.8s ease;
+  /* iOS: keep video in layout layer for inline playback */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .hero-media.is-video-playing .hero-poster {

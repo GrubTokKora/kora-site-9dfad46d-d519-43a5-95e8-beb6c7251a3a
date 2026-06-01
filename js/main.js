@@ -73,21 +73,69 @@ window.VEGA_CONFIG = {
     });
   }
 
-  /* Hero poster → muted video when ready */
+  /* Hero poster → muted video when ready (cross-browser) */
   const heroMedia = document.querySelector('.hero-media');
   const heroVideo = document.querySelector('.hero-video');
   if (heroMedia && heroVideo) {
+    /* Muted + inline required for autoplay (Chrome, Firefox, Safari, iOS) */
     heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.setAttribute('muted', '');
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
+
+    var heroVideoStarted = false;
     function startHeroVideo() {
-      heroVideo.play().then(function () {
+      if (heroVideoStarted) return;
+      heroVideoStarted = true;
+      var playPromise = heroVideo.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+          .then(function () {
+            heroMedia.classList.add('is-video-playing');
+          })
+          .catch(function () {
+            heroVideoStarted = false;
+          });
+      } else {
         heroMedia.classList.add('is-video-playing');
-      }).catch(function () {});
+      }
     }
-    if (heroVideo.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+
+    function isHeroVideoReady() {
+      return heroVideo.readyState >= 4;
+    }
+
+    var heroVideoFallbackTimer = setTimeout(function () {
+      if (!heroVideoStarted && heroVideo.readyState >= 3) startHeroVideo();
+    }, 6000);
+
+    function startHeroVideoAndClearFallback() {
+      clearTimeout(heroVideoFallbackTimer);
       startHeroVideo();
-    } else {
-      heroVideo.addEventListener('canplaythrough', startHeroVideo, { once: true });
     }
+
+    if (isHeroVideoReady()) {
+      startHeroVideoAndClearFallback();
+    } else {
+      heroVideo.addEventListener('canplaythrough', startHeroVideoAndClearFallback, { once: true });
+      /* Safari sometimes skips canplaythrough; loadeddata + readyState is a backup */
+      heroVideo.addEventListener('loadeddata', function () {
+        if (heroVideo.readyState >= 4) startHeroVideoAndClearFallback();
+      }, { once: true });
+    }
+
+    /* Resume if the browser pauses background video (tab switch, etc.) */
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && heroMedia.classList.contains('is-video-playing')) {
+        heroVideo.play().catch(function () {});
+      }
+    });
+
+    /* On failure, poster image remains visible */
+    heroVideo.addEventListener('error', function () {
+      heroVideoStarted = true;
+    }, { once: true });
   }
 
   /* Intersection reveals */
