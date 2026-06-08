@@ -388,9 +388,12 @@ window.VEGA_CONFIG = {
     const questions = faqContainer.querySelectorAll('[data-faq-question]');
     questions.forEach(function (question) {
       question.addEventListener('click', function () {
-        const answer = question.nextElementSibling;
+        const answer = this.nextElementSibling;
+        if (!answer) {
+          return;
+        }
         const isOpen = !answer.classList.contains('hidden');
-        question.classList.toggle('is-open', !isOpen);
+        this.classList.toggle('is-open', !isOpen);
         answer.classList.toggle('hidden');
       });
     });
