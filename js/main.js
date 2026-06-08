@@ -382,6 +382,20 @@ window.VEGA_CONFIG = {
 
   /* Order section stagger — handled by js-reveal on h2; cards use js-reveal with inline delay via style */
 
+  /* FAQ Accordion */
+  const faqContainer = document.querySelector('[data-faq-container]');
+  if (faqContainer) {
+    const questions = faqContainer.querySelectorAll('[data-faq-question]');
+    questions.forEach(function (question) {
+      question.addEventListener('click', function () {
+        const answer = question.nextElementSibling;
+        const isOpen = !answer.classList.contains('hidden');
+        question.classList.toggle('is-open', !isOpen);
+        answer.classList.toggle('hidden');
+      });
+    });
+  }
+
   /* Newsletter */
   var form = document.querySelector('[data-newsletter-form]');
   if (form && cfg.API_BASE_URL && cfg.BUSINESS_ID) {

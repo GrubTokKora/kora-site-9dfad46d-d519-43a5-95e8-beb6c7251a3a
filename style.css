@@ -7,6 +7,25 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+[data-faq-question] svg {
+  transition: transform 0.3s;
+}
+[data-faq-question].is-open svg {
+  transform: rotate(180deg);
+}
+
 /* Reveal-on-scroll initial state (JS adds .is-visible) */
 .js-reveal {
   opacity: 0;
