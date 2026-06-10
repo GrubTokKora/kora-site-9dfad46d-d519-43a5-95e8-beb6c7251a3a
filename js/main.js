@@ -1,7 +1,7 @@
 window.VEGA_CONFIG = {
-  BUSINESS_ID: '437abada-e3c2-4e30-bb68-2f5a4c7f5984',
+  BUSINESS_ID: '9dfad46d-d519-43a5-95e8-beb6c7251a3a',
   API_BASE_URL: 'https://kora-agent.grubtok.com',
-  RECAPTCHA_V2_SITE_KEY: '6LfRt44sAAAAACVTvFvGjoufmEcZqZk_pT4T_5Xd',
+  RECAPTCHA_V2_SITE_KEY: '6LcsdJYsAAAAAAur-h7cYlZuGJTmijNHmOi5kFH7',
 };
 
 (function () {
