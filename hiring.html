@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 }</script>
 <link href="assets/styles.css" rel="stylesheet"/>
-<link href="style.css" rel="stylesheet"/>
+<link href="style.css?v=20260610" rel="stylesheet"/>
 </head>
 <body class="bg-background text-foreground font-sans antialiased min-h-screen">
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" data-site-header="">
@@ -226,12 +226,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     widgetPosition: {
       side: 'right',
       right: '20px',
-      bottom: 'calc(50% - 33px)'
+      bottom: '20px'
     },
     enableVoiceControl: false
   };
 </script>
-<script defer="" src="https://cdn.jsdelivr.net/npm/accessibility-widgets@latest/widget.js">
+<script defer src="https://cdn.jsdelivr.net/npm/accessibility-widgets@latest/widget.js"></script>
+<script>
+  (function repositionA11yWidget() {
+    function apply() {
+      var host = document.getElementById('snn-accessibility-widget-container');
+      if (!host || !host.shadowRoot) return false;
+      var btn = host.shadowRoot.getElementById('snn-accessibility-fixed-button');
+      if (!btn) return false;
+      btn.style.setProperty('bottom', 'auto', 'important');
+      btn.style.setProperty('top', '50%', 'important');
+      btn.style.setProperty('transform', 'translateY(-50%)', 'important');
+      btn.style.setProperty('right', '20px', 'important');
+      btn.style.setProperty('left', 'auto', 'important');
+      return true;
+    }
+    if (apply()) return;
+    var tries = 0;
+    var timer = setInterval(function () {
+      if (apply() || ++tries > 20) clearInterval(timer);
+    }, 250);
+  })();
 </script>
 
 
