@@ -75,10 +75,42 @@
     var okEl = form.querySelector('[data-hiring-success]');
     var submitBtn = form.querySelector('[type="submit"]');
 
+    function clearHiringMessages() {
+      if (errEl) {
+        errEl.textContent = '';
+        errEl.hidden = true;
+      }
+      if (okEl) {
+        okEl.textContent = '';
+        okEl.hidden = true;
+      }
+    }
+
+    function showHiringError(message) {
+      if (okEl) {
+        okEl.textContent = '';
+        okEl.hidden = true;
+      }
+      if (errEl) {
+        errEl.textContent = message;
+        errEl.hidden = false;
+      }
+    }
+
+    function showHiringSuccess(message) {
+      if (errEl) {
+        errEl.textContent = '';
+        errEl.hidden = true;
+      }
+      if (okEl) {
+        okEl.textContent = message;
+        okEl.hidden = false;
+      }
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      if (errEl) errEl.textContent = '';
-      if (okEl) okEl.textContent = '';
+      clearHiringMessages();
 
       var fullName = (form.querySelector('[name="full_name"]') || {}).value.trim();
       var email = (form.querySelector('[name="email"]') || {}).value.trim();
@@ -87,19 +119,19 @@
       var message = (form.querySelector('[name="message"]') || {}).value.trim();
 
       if (!fullName) {
-        if (errEl) errEl.textContent = 'Please enter your full name.';
+        showHiringError('Please enter your full name.');
         return;
       }
       if (!email || !isEmailValid(email)) {
-        if (errEl) errEl.textContent = 'Please enter a valid email address.';
+        showHiringError('Please enter a valid email address.');
         return;
       }
       if (!message) {
-        if (errEl) errEl.textContent = 'Please enter your message.';
+        showHiringError('Please enter your message.');
         return;
       }
       if (!cfg.RECAPTCHA_V2_SITE_KEY || !cfg.RECAPTCHA_V2_SITE_KEY.trim()) {
-        if (errEl) errEl.textContent = 'Form temporarily unavailable.';
+        showHiringError('Form temporarily unavailable.');
         return;
       }
 
@@ -111,7 +143,7 @@
             : window.grecaptcha.getResponse();
       }
       if (!token) {
-        if (errEl) errEl.textContent = 'Please complete the reCAPTCHA check.';
+        showHiringError('Please complete the reCAPTCHA check.');
         return;
       }
 
@@ -142,13 +174,13 @@
         if (!res.ok) {
           throw new Error((data && (data.detail || data.message)) || 'Submission failed.');
         }
-        if (okEl) okEl.textContent = 'Thanks! Your application has been submitted.';
+        showHiringSuccess('Thanks! Your application has been submitted.');
         form.reset();
         if (window.grecaptcha && typeof window.grecaptcha.reset === 'function' && recaptchaWidgetId != null) {
           window.grecaptcha.reset(recaptchaWidgetId);
         }
       } catch (err) {
-        if (errEl) errEl.textContent = err.message || 'Something went wrong.';
+        showHiringError(err.message || 'Something went wrong.');
       } finally {
         if (submitBtn) submitBtn.disabled = false;
         if (submitBtn) submitBtn.textContent = 'Submit';

@@ -483,4 +483,108 @@ window.VEGA_CONFIG = {
       }
     });
   }
+
+  /* Newsletter subscribe popup (first visit) */
+  (function initSubscribePopup() {
+    var popup = document.querySelector('[data-subscribe-popup]');
+    if (!popup) return;
+
+    var STORAGE_KEY = 'vega_subscribe_popup_seen';
+    var TOAST_URL = 'https://www.toasttab.com/vegamexicancuisine/marketing-signup';
+    var SHOW_DELAY_MS = 1500;
+    var closeBtns = popup.querySelectorAll('[data-subscribe-close]');
+    var cta = popup.querySelector('[data-subscribe-cta]');
+    var lastFocus = null;
+    var openTimer = null;
+
+    function trackPopupEvent(eventName, params) {
+      if (typeof window.trackEvent === 'function') {
+        window.trackEvent(eventName, params);
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: eventName }, params || {}));
+    }
+
+    function markSeen() {
+      try {
+        localStorage.setItem(STORAGE_KEY, '1');
+      } catch (e) {
+        /* ignore private browsing */
+      }
+    }
+
+    function hasSeen() {
+      try {
+        return localStorage.getItem(STORAGE_KEY) === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function openPopup() {
+      lastFocus = document.activeElement;
+      popup.hidden = false;
+      popup.setAttribute('aria-hidden', 'false');
+      popup.classList.add('is-open');
+      document.body.classList.add('subscribe-popup-open');
+      trackPopupEvent('newsletter_popup_shown', { page_path: window.location.pathname || '/' });
+      requestAnimationFrame(function () {
+        var closeBtn = popup.querySelector('.subscribe-popup__close');
+        if (closeBtn) closeBtn.focus();
+      });
+    }
+
+    function closePopup(reason) {
+      if (openTimer) {
+        clearTimeout(openTimer);
+        openTimer = null;
+      }
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('subscribe-popup-open');
+      markSeen();
+      trackPopupEvent('newsletter_popup_closed', {
+        page_path: window.location.pathname || '/',
+        close_reason: reason || 'unknown',
+      });
+      window.setTimeout(function () {
+        popup.hidden = true;
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+          lastFocus.focus();
+        }
+      }, 300);
+    }
+
+    closeBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var reason = 'close';
+        if (btn.classList.contains('subscribe-popup__dismiss')) reason = 'dismiss';
+        else if (btn.classList.contains('subscribe-popup__backdrop')) reason = 'backdrop';
+        closePopup(reason);
+      });
+    });
+
+    if (cta) {
+      cta.addEventListener('click', function () {
+        trackPopupEvent('newsletter_popup_subscribe_click', {
+          page_path: window.location.pathname || '/',
+          link_url: TOAST_URL,
+        });
+        closePopup('subscribe');
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!popup.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closePopup('escape');
+      }
+    });
+
+    if (!hasSeen()) {
+      openTimer = window.setTimeout(openPopup, SHOW_DELAY_MS);
+    }
+  })();
 })();
