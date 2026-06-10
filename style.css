@@ -1,6 +1,17 @@
 /* Vega PROD — extras on top of Tailwind CDN */
 :root {
   scroll-behavior: smooth;
+  --header-scroll-offset: 4rem;
+}
+
+html {
+  scroll-padding-top: var(--header-scroll-offset);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-scroll-offset: 7.5rem;
+  }
 }
 
 .text-shadow {

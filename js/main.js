@@ -9,6 +9,25 @@ window.VEGA_CONFIG = {
 
   /* Header scroll */
   const header = document.querySelector('[data-site-header]');
+
+  function getHeaderScrollOffset() {
+    if (!header) return 0;
+    return Math.ceil(header.getBoundingClientRect().height) + 0;
+  }
+
+  function updateHeaderScrollPadding() {
+    document.documentElement.style.setProperty('--header-scroll-offset', getHeaderScrollOffset() + 'px');
+  }
+
+  function scrollToSection(id, behavior) {
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+    updateHeaderScrollPadding();
+    var top = window.pageYOffset + target.getBoundingClientRect().top - getHeaderScrollOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior: behavior || 'smooth' });
+  }
+
   function onScrollHeader() {
     if (!header) return;
     var scrolled = window.scrollY > 100;
@@ -19,9 +38,14 @@ window.VEGA_CONFIG = {
       header.classList.remove('is-scrolled', 'bg-vega-bg-dark/95', 'backdrop-blur-sm', 'shadow-lg');
       header.classList.add('bg-transparent');
     }
+    updateHeaderScrollPadding();
   }
   window.addEventListener('scroll', onScrollHeader, { passive: true });
+  window.addEventListener('resize', updateHeaderScrollPadding, { passive: true });
   onScrollHeader();
+  if (header && typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(updateHeaderScrollPadding).observe(header);
+  }
 
   /* Mobile menu */
   const mobileBtn = document.querySelector('[data-mobile-menu-btn]');
@@ -33,6 +57,7 @@ window.VEGA_CONFIG = {
     mobilePanel.classList.toggle('hidden', !open);
     if (mobileIconOpen) mobileIconOpen.classList.toggle('hidden', open);
     if (mobileIconClose) mobileIconClose.classList.toggle('hidden', !open);
+    requestAnimationFrame(updateHeaderScrollPadding);
   }
   if (mobileBtn && mobilePanel) {
     mobileBtn.addEventListener('click', function () {
@@ -43,6 +68,48 @@ window.VEGA_CONFIG = {
       a.addEventListener('click', function () {
         setMobileOpen(false);
       });
+    });
+  }
+
+  /* In-page anchor links — single offset, correct section after header */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      var id = hash.slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var menuWasOpen = mobilePanel && !mobilePanel.classList.contains('hidden');
+      if (menuWasOpen) {
+        setMobileOpen(false);
+      }
+      if (history.pushState) {
+        history.pushState(null, '', hash);
+      } else {
+        location.hash = hash;
+      }
+      function runScroll() {
+        scrollToSection(id, 'smooth');
+      }
+      if (menuWasOpen) {
+        requestAnimationFrame(function () {
+          updateHeaderScrollPadding();
+          requestAnimationFrame(runScroll);
+        });
+      } else {
+        requestAnimationFrame(runScroll);
+      }
+    });
+  });
+
+  if (location.hash) {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    requestAnimationFrame(function () {
+      scrollToSection(location.hash.slice(1), 'auto');
     });
   }
 
@@ -396,91 +463,6 @@ window.VEGA_CONFIG = {
         this.classList.toggle('is-open', !isOpen);
         answer.classList.toggle('hidden');
       });
-    });
-  }
-
-  /* Newsletter */
-  var form = document.querySelector('[data-newsletter-form]');
-  if (form && cfg.API_BASE_URL && cfg.BUSINESS_ID) {
-    var msgEl = form.querySelector('[data-newsletter-message]');
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      var email = (form.querySelector('[name="email"]') || {}).value || '';
-      var phone = (form.querySelector('[name="phone"]') || {}).value || '';
-      var emailOptIn = form.querySelector('[name="email_opt_in"]') && form.querySelector('[name="email_opt_in"]').checked;
-      var smsOptIn = form.querySelector('[name="sms_opt_in"]') && form.querySelector('[name="sms_opt_in"]').checked;
-      var submitBtn = form.querySelector('[type="submit"]');
-      if (msgEl) {
-        msgEl.textContent = '';
-        msgEl.className = 'mt-4 text-sm min-h-[1.25rem]';
-      }
-      if (!emailOptIn && !smsOptIn) {
-        if (msgEl) {
-          msgEl.textContent = 'Please select at least one subscription option.';
-          msgEl.className = 'mt-4 text-sm text-red-400 min-h-[1.25rem]';
-        }
-        return;
-      }
-      if (emailOptIn && !email.trim()) {
-        if (msgEl) {
-          msgEl.textContent = 'Please provide an email address.';
-          msgEl.className = 'mt-4 text-sm text-red-400 min-h-[1.25rem]';
-        }
-        return;
-      }
-      if (smsOptIn && !phone.trim()) {
-        if (msgEl) {
-          msgEl.textContent = 'Please provide a phone number for SMS updates.';
-          msgEl.className = 'mt-4 text-sm text-red-400 min-h-[1.25rem]';
-        }
-        return;
-      }
-      if (!email.trim() && !phone.trim()) {
-        if (msgEl) {
-          msgEl.textContent = 'Please provide an email or phone number.';
-          msgEl.className = 'mt-4 text-sm text-red-400 min-h-[1.25rem]';
-        }
-        return;
-      }
-      if (submitBtn) submitBtn.disabled = true;
-      if (submitBtn) submitBtn.textContent = 'Subscribing...';
-      try {
-        var res = await fetch(cfg.API_BASE_URL + '/api/v1/public/newsletter/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            business_id: cfg.BUSINESS_ID,
-            email: emailOptIn ? email : null,
-            phone_number: smsOptIn ? phone : null,
-            email_opt_in: emailOptIn,
-            sms_opt_in: smsOptIn,
-            source: 'WEBSITE',
-          }),
-        });
-        var data = await res.json().catch(function () {
-          return {};
-        });
-        if (!res.ok) {
-          throw new Error(data.message || 'Subscription failed.');
-        }
-        if (msgEl) {
-          msgEl.textContent = data.message || 'Successfully subscribed!';
-          msgEl.className = 'mt-4 text-sm text-green-400 min-h-[1.25rem]';
-        }
-        form.reset();
-        var emailCb = form.querySelector('[name="email_opt_in"]');
-        var smsCb = form.querySelector('[name="sms_opt_in"]');
-        if (emailCb) emailCb.checked = true;
-        if (smsCb) smsCb.checked = false;
-      } catch (err) {
-        if (msgEl) {
-          msgEl.textContent = err.message || 'Subscription failed. Please try again.';
-          msgEl.className = 'mt-4 text-sm text-red-400 min-h-[1.25rem]';
-        }
-      } finally {
-        if (submitBtn) submitBtn.disabled = false;
-        if (submitBtn) submitBtn.textContent = 'Subscribe';
-      }
     });
   }
 
