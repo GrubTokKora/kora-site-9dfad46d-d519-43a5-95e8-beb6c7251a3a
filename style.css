@@ -812,3 +812,30 @@ body.subscribe-popup-open {
     padding: 2.5rem 2.5rem;
   }
 }
+
+/* Promo popup */
+.promo-popup__panel {
+  background: transparent;
+  max-width: 40rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  overflow: visible;
+}
+
+@media (min-width: 640px) {
+  .promo-popup__panel {
+    min-height: auto;
+  }
+}
+
+.promo-popup__panel img {
+  border-radius: 0.5rem;
+  display: block;
+}
+
+.promo-popup__close {
+  background: rgba(0,0,0,0.5);
+  border-color: rgba(255,255,255,0.7);
+  top: -0.75rem;
+  right: -0.75rem;
+}
