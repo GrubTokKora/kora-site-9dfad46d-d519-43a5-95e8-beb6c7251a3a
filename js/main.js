@@ -569,4 +569,95 @@ window.VEGA_CONFIG = {
       openTimer = window.setTimeout(openPopup, SHOW_DELAY_MS);
     }
   })();
+
+  /* Taco Tuesday Promo Popup */
+  (function initPromoPopup() {
+    var popup = document.getElementById('promo-popup');
+    if (!popup) return;
+
+    var STORAGE_KEY = 'vega_promo_popup_seen_session';
+    var SHOW_DELAY_MS = 500; // Show almost immediately
+
+    var closeBtns = popup.querySelectorAll('.promo-popup__close, .promo-popup__backdrop, .promo-popup__dismiss');
+    var cta = popup.querySelector('.promo-popup__cta');
+    var lastFocus = null;
+    var openTimer = null;
+
+    function markSeen() {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, '1');
+      } catch (e) {
+        /* ignore private browsing */
+      }
+    }
+
+    function hasSeen() {
+      try {
+        return sessionStorage.getItem(STORAGE_KEY) === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function openPopup() {
+      lastFocus = document.activeElement;
+      popup.hidden = false;
+      popup.setAttribute('aria-hidden', 'false');
+      popup.classList.add('is-open');
+      document.body.classList.add('gallery-lightbox-open'); // reuse to prevent scroll
+      requestAnimationFrame(function () {
+        var closeBtn = popup.querySelector('.promo-popup__close');
+        if (closeBtn) closeBtn.focus();
+      });
+    }
+
+    function closePopup() {
+      if (openTimer) {
+        clearTimeout(openTimer);
+        openTimer = null;
+      }
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gallery-lightbox-open');
+      markSeen();
+      window.setTimeout(function () {
+        popup.hidden = true;
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+          lastFocus.focus();
+        }
+      }, 300);
+    }
+
+    closeBtns.forEach(function (btn) {
+      btn.addEventListener('click', closePopup);
+    });
+
+    if (cta) {
+      cta.addEventListener('click', function(e) {
+        var href = cta.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          var sectionId = href.substring(1);
+          closePopup();
+          setTimeout(function() {
+            scrollToSection(sectionId, 'smooth');
+          }, 350);
+        } else {
+          closePopup();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!popup.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closePopup();
+      }
+    });
+
+    if (!hasSeen()) {
+      openTimer = window.setTimeout(openPopup, SHOW_DELAY_MS);
+    }
+  })();
 })();
