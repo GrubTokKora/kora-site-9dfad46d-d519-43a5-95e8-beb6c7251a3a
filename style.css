@@ -154,7 +154,6 @@ html {
   display: block;
   width: 100%;
   height: 6rem;
-  object-fit: fill;
   border-radius: inherit;
 }
 

@@ -1534,15 +1534,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Accessibility Widget -->
 <script>
   window.ACCESSIBILITY_WIDGET_CONFIG = {
-    widgetWidth: '360px',
+    widgetWidth: '350px',
     colors: {
       primary: '#9b4d9e',
       secondary: '#ffffff'
     },
     widgetPosition: {
       side: 'right',
-      right: '20px',
-      bottom: '20px'
+      right: '0px',
+      bottom: '50vh',
+    },
+    button: {
+    size: '40px',
+    iconSize: '40px',
     },
     enableVoiceControl: false
   };
@@ -1555,11 +1559,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       if (!host || !host.shadowRoot) return false;
       var btn = host.shadowRoot.getElementById('snn-accessibility-fixed-button');
       if (!btn) return false;
-      btn.style.setProperty('bottom', 'auto', 'important');
-      btn.style.setProperty('top', '50%', 'important');
-      btn.style.setProperty('transform', 'translateY(-50%)', 'important');
-      btn.style.setProperty('right', '20px', 'important');
-      btn.style.setProperty('left', 'auto', 'important');
       return true;
     }
     if (apply()) return;
