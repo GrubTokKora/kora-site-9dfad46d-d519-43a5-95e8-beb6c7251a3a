@@ -1,8 +1,14 @@
 (function () {
-  var cfg = window.VEGA_CONFIG || {};
+  var cfg = window.KORA_SITE_CONFIG || {};
+  var apiBaseUrl = (cfg.apiBaseUrl || '').replace(/\/+$/, '');
+  var businessId = cfg.businessId || '';
+  var siteKey = (cfg.recaptchaSiteKey || '').trim();
+
   var form = document.querySelector('[data-hiring-form]');
   var recaptchaContainer = document.querySelector('[data-recaptcha]');
   var recaptchaWidgetId = null;
+  var recaptchaLoadStarted = false;
+  var recaptchaReadyPromise = null;
 
   function loadRecaptchaScript() {
     return new Promise(function (resolve, reject) {
@@ -44,26 +50,45 @@
   }
 
   function renderWidget() {
-    if (!cfg.RECAPTCHA_V2_SITE_KEY || !cfg.RECAPTCHA_V2_SITE_KEY.trim() || !recaptchaContainer) return;
+    if (!siteKey || !recaptchaContainer || recaptchaWidgetId != null) return;
     try {
       var id = window.grecaptcha.render(recaptchaContainer, {
-        sitekey: cfg.RECAPTCHA_V2_SITE_KEY,
+        sitekey: siteKey,
       });
       if (typeof id === 'number') recaptchaWidgetId = id;
     } catch (e) {}
   }
 
-  if (cfg.RECAPTCHA_V2_SITE_KEY && cfg.RECAPTCHA_V2_SITE_KEY.trim() && recaptchaContainer) {
-    loadRecaptchaScript()
+  function ensureRecaptchaReady() {
+    if (!siteKey || !recaptchaContainer) {
+      return Promise.reject(new Error('Form temporarily unavailable.'));
+    }
+    if (recaptchaReadyPromise) return recaptchaReadyPromise;
+    recaptchaLoadStarted = true;
+    recaptchaReadyPromise = loadRecaptchaScript()
       .then(waitForGrecaptcha)
       .then(function () {
         if (typeof window.grecaptcha.ready === 'function') {
-          window.grecaptcha.ready(renderWidget);
-        } else {
-          renderWidget();
+          return new Promise(function (resolve) {
+            window.grecaptcha.ready(function () {
+              renderWidget();
+              resolve();
+            });
+          });
         }
-      })
-      .catch(function () {});
+        renderWidget();
+      });
+    return recaptchaReadyPromise;
+  }
+
+  if (form && siteKey && recaptchaContainer) {
+    form.addEventListener(
+      'focusin',
+      function () {
+        ensureRecaptchaReady().catch(function () {});
+      },
+      { once: true }
+    );
   }
 
   function isEmailValid(email) {
@@ -115,7 +140,7 @@
       var fullName = (form.querySelector('[name="full_name"]') || {}).value.trim();
       var email = (form.querySelector('[name="email"]') || {}).value.trim();
       var phone = (form.querySelector('[name="phone"]') || {}).value.trim();
-      var position = (form.querySelector('[name="position"]') || {}).value;
+      var position = (form.querySelector('[name="position"]') || {}).value.trim();
       var message = (form.querySelector('[name="message"]') || {}).value.trim();
 
       if (!fullName) {
@@ -130,40 +155,59 @@
         showHiringError('Please enter your message.');
         return;
       }
-      if (!cfg.RECAPTCHA_V2_SITE_KEY || !cfg.RECAPTCHA_V2_SITE_KEY.trim()) {
+      if (!siteKey) {
         showHiringError('Form temporarily unavailable.');
         return;
       }
-
-      var token = '';
-      if (window.grecaptcha) {
-        token =
-          recaptchaWidgetId != null
-            ? window.grecaptcha.getResponse(recaptchaWidgetId)
-            : window.grecaptcha.getResponse();
+      if (!apiBaseUrl || !businessId) {
+        showHiringError('Form is not configured correctly. Please contact us directly.');
+        return;
       }
+
+      try {
+        if (!recaptchaLoadStarted) {
+          await ensureRecaptchaReady();
+        } else if (recaptchaReadyPromise) {
+          await recaptchaReadyPromise;
+        }
+      } catch (err) {
+        showHiringError('Security check loading—please try again.');
+        return;
+      }
+
+      if (!window.grecaptcha) {
+        showHiringError('Security check loading—please try again.');
+        return;
+      }
+
+      var token =
+        recaptchaWidgetId != null
+          ? window.grecaptcha.getResponse(recaptchaWidgetId)
+          : window.grecaptcha.getResponse();
       if (!token) {
         showHiringError('Please complete the reCAPTCHA check.');
         return;
       }
 
+      var formData = {
+        name: fullName,
+        email: email,
+        message: message,
+      };
+      if (phone) formData.phone = phone;
+      if (position) formData.position = position;
+
       if (submitBtn) submitBtn.disabled = true;
       if (submitBtn) submitBtn.textContent = 'Submitting…';
 
       try {
-        var res = await fetch(cfg.API_BASE_URL + '/api/v1/public/forms/submit', {
+        var res = await fetch(apiBaseUrl + '/api/v1/public/forms/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            business_id: cfg.BUSINESS_ID,
+            business_id: businessId,
             form_type: 'hiring',
-            form_data: {
-              full_name: fullName,
-              phone: phone || null,
-              email: email,
-              position: position || null,
-              message: message,
-            },
+            form_data: formData,
             submitter_email: email || null,
             captcha_token: token,
           }),
@@ -176,7 +220,11 @@
         }
         showHiringSuccess('Thanks! Your application has been submitted.');
         form.reset();
-        if (window.grecaptcha && typeof window.grecaptcha.reset === 'function' && recaptchaWidgetId != null) {
+        if (
+          window.grecaptcha &&
+          typeof window.grecaptcha.reset === 'function' &&
+          recaptchaWidgetId != null
+        ) {
           window.grecaptcha.reset(recaptchaWidgetId);
         }
       } catch (err) {

@@ -1,7 +1,14 @@
+window.KORA_SITE_CONFIG = {
+  apiBaseUrl: 'https://kora-agent.grubtok.com',
+  businessId: '9dfad46d-d519-43a5-95e8-beb6c7251a3a',
+  recaptchaSiteKey: '6LcsdJYsAAAAAAur-h7cYlZuGJTmijNHmOi5kFH7',
+};
+
+// Backwards-compatible alias used by legacy scripts on this site.
 window.VEGA_CONFIG = {
-  BUSINESS_ID: '9dfad46d-d519-43a5-95e8-beb6c7251a3a',
-  API_BASE_URL: 'https://kora-agent.grubtok.com',
-  RECAPTCHA_V2_SITE_KEY: '6LcsdJYsAAAAAAur-h7cYlZuGJTmijNHmOi5kFH7',
+  BUSINESS_ID: window.KORA_SITE_CONFIG.businessId,
+  API_BASE_URL: window.KORA_SITE_CONFIG.apiBaseUrl,
+  RECAPTCHA_V2_SITE_KEY: window.KORA_SITE_CONFIG.recaptchaSiteKey,
 };
 
 (function () {
