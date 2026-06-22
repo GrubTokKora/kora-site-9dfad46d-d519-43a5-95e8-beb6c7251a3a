@@ -52,11 +52,14 @@
   function renderWidget() {
     if (!siteKey || !recaptchaContainer || recaptchaWidgetId != null) return;
     try {
+      recaptchaContainer.hidden = false;
       var id = window.grecaptcha.render(recaptchaContainer, {
         sitekey: siteKey,
       });
       if (typeof id === 'number') recaptchaWidgetId = id;
-    } catch (e) {}
+    } catch (e) {
+      recaptchaContainer.hidden = true;
+    }
   }
 
   function ensureRecaptchaReady() {
