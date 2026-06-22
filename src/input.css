@@ -4,20 +4,32 @@
 @source "../js/**/*.js";
 
 /* Theme migrated from former Play CDN tailwind.config (extend) */
-/* KORA_BRAND_THEME_START */
 @theme {
-  --color-primary: #ffffff;
-  --color-secondary: #9e459a;
-  --color-accent: #e95951;
-  --font-heading: Oswald, serif;
-  --font-body: "Libre Baskerville", sans-serif;
-}
-/* KORA_BRAND_THEME_END */
+  --color-background: #ffffff;
+  --color-foreground: #111827;
 
-/* KORA_BRAND_BASE_START */
-@layer base {
-  body { font-family: var(--font-body); }
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
-}
-/* KORA_BRAND_BASE_END */
+  --color-primary: #9b4d9e;
+  --color-primary-dark: #7a3d7d;
+  --color-primary-foreground: #ffffff;
 
+  --color-secondary: #e85a5a;
+  --color-secondary-dark: #d14a4a;
+  --color-secondary-foreground: #ffffff;
+
+  --color-vega-purple: #9b4d9e;
+  --color-vega-purple-dark: #7a3d7d;
+  --color-vega-coral: #e85a5a;
+  --color-vega-coral-dark: #d14a4a;
+  --color-vega-bg-light: #a8b8bf;
+  --color-vega-bg-dark: #5a7a8a;
+
+  --font-serif: "Libre Baskerville", Georgia, serif;
+  --font-sans: "Josefin Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: Oswald, ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Great Vibes", "Dancing Script", cursive;
+
+  /* Nav used `text-md` under CDN extend; keep a sensible size */
+  --text-md: 1rem;
+  --text-md--line-height: 1.5rem;
+}

@@ -2,7 +2,6 @@
 
 <html class="scroll-smooth" lang="en">
 <head>
-  <link rel="icon" href="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3a/medialibrary/1780909311_jn9jiy.jpg">
 <!-- KORA_TRACKING_GTM_HEAD_START -->
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -69,11 +68,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }</script>
 <link href="assets/styles.css" rel="stylesheet"/>
 <link href="style.css?v=20260610" rel="stylesheet"/>
-<!-- KORA_GOOGLE_FONTS_START -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Libre+Baskerville:wght@400;600;700&display=swap">
-<!-- KORA_GOOGLE_FONTS_END -->
 </head>
 <body class="bg-background text-foreground font-sans antialiased min-h-screen">
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" data-site-header="">
@@ -239,6 +233,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   })();
 </script>
 
+
 <!-- KORA_TRACKING_EVENTS_START -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -288,76 +283,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 </script>
 <!-- KORA_TRACKING_EVENTS_END -->
-<!-- KORA_BRANDING_FOOTER_SCRIPT_START -->
-<script>
-(function () {
-  var koraUrl = "https://askkora.ai";
-  var muted = "#64748b";
-  var blue = "#1E88E5";
-  var purple = "#7B1FA2";
-  var startMarker = 'KORA_' + 'BRANDING_FOOTER_START';
-  var endMarker = 'KORA_' + 'BRANDING_FOOTER_END';
-  var selector = '[data-kora-branding-footer="true"], .kora-powered-by';
-
-  function removeExisting() {
-    document.querySelectorAll(selector).forEach(function (node) {
-      if (node && node.parentNode) node.parentNode.removeChild(node);
-    });
-    var walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_COMMENT);
-    var comments = [];
-    while (walker.nextNode()) {
-      if (walker.currentNode.nodeValue.indexOf(startMarker) !== -1 || walker.currentNode.nodeValue.indexOf(endMarker) !== -1) {
-        comments.push(walker.currentNode);
-      }
-    }
-    comments.forEach(function (node) {
-      if (node && node.parentNode) node.parentNode.removeChild(node);
-    });
-  }
-
-  function buildBranding() {
-    var wrapper = document.createElement('div');
-    wrapper.className = 'kora-powered-by';
-    wrapper.setAttribute('data-kora-branding-footer', 'true');
-    wrapper.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;gap:0.35rem;padding:0.75rem 1rem;font-size:0.75rem;';
-    wrapper.innerHTML = '<span style="color:' + muted + '">Powered by</span>' +
-      '<a href="' + koraUrl + '" target="_blank" rel="noopener noreferrer" style="text-decoration:none;font-weight:600;background:linear-gradient(135deg,' + blue + ',' + purple + ');-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Kora</a>';
-    return wrapper;
-  }
-
-  function targetFooter(allowFallback) {
-    var footer = document.querySelector('footer');
-    if (footer) return footer;
-    if (!allowFallback) return null;
-    return document.getElementById('site-footer') || document.body;
-  }
-
-  function placeBranding(allowFallback) {
-    var target = targetFooter(allowFallback);
-    if (!target) return false;
-    removeExisting();
-    target.appendChild(document.createComment(' ' + startMarker + ' '));
-    target.appendChild(buildBranding());
-    target.appendChild(document.createComment(' ' + endMarker + ' '));
-    return target.tagName && target.tagName.toLowerCase() === 'footer';
-  }
-
-  function start() {
-    if (placeBranding(false)) return;
-    var observer = new MutationObserver(function () {
-      if (placeBranding(false)) observer.disconnect();
-    });
-    observer.observe(document.documentElement, { childList: true, subtree: true });
-    window.setTimeout(function () { observer.disconnect(); placeBranding(true); }, 3000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    start();
-  }
-}());
-</script>
-<!-- KORA_BRANDING_FOOTER_SCRIPT_END -->
+<!-- KORA_BRANDING_FOOTER_START -->
+<div class="kora-powered-by" style="display:flex;justify-content:flex-end;align-items:center;gap:0.35rem;padding:0.75rem 1rem;font-size:0.75rem;"><span style="color:#64748b">Powered by</span><a href="https://askkora.ai" target="_blank" rel="noopener noreferrer" style="text-decoration:none;font-weight:600;background:linear-gradient(135deg,#1E88E5,#7B1FA2);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Kora</a></div>
+<!-- KORA_BRANDING_FOOTER_END -->
 </body>
 </html>
