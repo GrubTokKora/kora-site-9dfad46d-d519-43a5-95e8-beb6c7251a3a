@@ -147,7 +147,7 @@ window.VEGA_CONFIG = {
     });
   }
 
-  /* Hero poster → muted video when ready (cross-browser) */
+  /* Hero poster → muted video when ready (deferred load so it doesn't compete with LCP) */
   const heroMedia = document.querySelector('.hero-media');
   const heroVideo = document.querySelector('.hero-video');
   if (heroMedia && heroVideo) {
@@ -157,8 +157,11 @@ window.VEGA_CONFIG = {
     heroVideo.setAttribute('muted', '');
     heroVideo.setAttribute('playsinline', '');
     heroVideo.setAttribute('webkit-playsinline', '');
+    heroVideo.preload = 'none';
 
     var heroVideoStarted = false;
+    var heroVideoSourceLoaded = false;
+
     function startHeroVideo() {
       if (heroVideoStarted) return;
       heroVideoStarted = true;
@@ -176,27 +179,59 @@ window.VEGA_CONFIG = {
       }
     }
 
-    function isHeroVideoReady() {
-      return heroVideo.readyState >= 4;
-    }
-
-    var heroVideoFallbackTimer = setTimeout(function () {
-      if (!heroVideoStarted && heroVideo.readyState >= 3) startHeroVideo();
-    }, 6000);
+    var heroVideoFallbackTimer = null;
 
     function startHeroVideoAndClearFallback() {
-      clearTimeout(heroVideoFallbackTimer);
+      if (heroVideoFallbackTimer) clearTimeout(heroVideoFallbackTimer);
       startHeroVideo();
     }
 
-    if (isHeroVideoReady()) {
-      startHeroVideoAndClearFallback();
-    } else {
+    function attachHeroVideoReadyListeners() {
+      heroVideoFallbackTimer = setTimeout(function () {
+        if (!heroVideoStarted && heroVideo.readyState >= 3) startHeroVideo();
+      }, 6000);
+
+      if (heroVideo.readyState >= 4) {
+        startHeroVideoAndClearFallback();
+        return;
+      }
+
       heroVideo.addEventListener('canplaythrough', startHeroVideoAndClearFallback, { once: true });
       /* Safari sometimes skips canplaythrough; loadeddata + readyState is a backup */
       heroVideo.addEventListener('loadeddata', function () {
         if (heroVideo.readyState >= 4) startHeroVideoAndClearFallback();
       }, { once: true });
+    }
+
+    function loadHeroVideoSource() {
+      if (heroVideoSourceLoaded) return;
+      var src = heroVideo.getAttribute('data-src');
+      if (!src) return;
+      heroVideoSourceLoaded = true;
+
+      var source = document.createElement('source');
+      source.src = src;
+      source.type = 'video/mp4';
+      heroVideo.appendChild(source);
+      heroVideo.load();
+      attachHeroVideoReadyListeners();
+    }
+
+    function scheduleHeroVideoLoad() {
+      var run = function () {
+        loadHeroVideoSource();
+      };
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(run, { timeout: 2500 });
+      } else {
+        window.setTimeout(run, 1200);
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      scheduleHeroVideoLoad();
+    } else {
+      window.addEventListener('load', scheduleHeroVideoLoad, { once: true });
     }
 
     /* Resume if the browser pauses background video (tab switch, etc.) */
@@ -209,7 +244,7 @@ window.VEGA_CONFIG = {
     /* On failure, poster image remains visible */
     heroVideo.addEventListener('error', function () {
       heroVideoStarted = true;
-    }, { once: true });
+    });
   }
 
   /* Intersection reveals */
