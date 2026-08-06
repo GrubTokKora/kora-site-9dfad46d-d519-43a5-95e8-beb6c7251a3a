@@ -1157,7 +1157,7 @@ We are also on UberEats, DoorDash and GrubHub.
 <button aria-label="Close event details" class="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/20 text-white hover:bg-primary transition-colors duration-300" id="evt-modal-close" type="button">
 <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M18 6 6 18M6 6l12 12"></path></svg>
 </button>
-<img alt="" class="w-full h-52 object-cover rounded-t-xl" id="evt-modal-img" src="" style="display:none"/>
+<img alt="Event photo from VEGA Mexican Cuisine" class="w-full h-52 object-cover rounded-t-xl" id="evt-modal-img" src="" style="display:none"/>
 <div class="p-6">
 <p class="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-1" id="evt-modal-category"></p>
 <h3 class="text-2xl font-serif text-primary mb-2" id="evt-modal-title"></h3>
@@ -1307,11 +1307,12 @@ We are also on UberEats, DoorDash and GrubHub.
     lastModalFocus = document.activeElement;
     if (ev.hero_image_url) {
       modalImg.src = ev.hero_image_url;
-      modalImg.alt = ev.title;
+      modalImg.alt = (ev.title && String(ev.title).trim()) || 'Event photo from VEGA Mexican Cuisine';
       modalImg.style.display = '';
     } else {
       modalImg.style.display = 'none';
       modalImg.src = '';
+      modalImg.alt = 'Event photo from VEGA Mexican Cuisine';
     }
     modalCategory.textContent = ev.category || '';
     modalTitle.textContent = ev.title;
@@ -1455,7 +1456,12 @@ We are also on UberEats, DoorDash and GrubHub.
 
       var imgHtml = '';
       if (ev.hero_image_url) {
-        imgHtml = '<img src="' + ev.hero_image_url + '" alt="' + ev.title + '" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/>';
+        var imgAlt = (ev.title && String(ev.title).trim()) || 'Event photo from VEGA Mexican Cuisine';
+        imgAlt = String(imgAlt)
+          .replace(/&/g, '&amp;')
+          .replace(/"/g, '&quot;')
+          .replace(/</g, '&lt;');
+        imgHtml = '<img src="' + ev.hero_image_url + '" alt="' + imgAlt + '" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/>';
       }
 
       var d = new Date(ev.start_datetime);
