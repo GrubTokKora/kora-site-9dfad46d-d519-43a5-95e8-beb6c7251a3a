@@ -1,0 +1,25 @@
+# VEGA Mexican Cuisine
+
+> VEGA Mexican Cuisine, located in Hartsdale, NY, offers a modern interpretation of traditional Mexican dishes. Their menu includes a variety of tacos, enchiladas, and fajitas, along with fresh guacamole.
+
+## Menu
+VEGA Mexican Cuisine offers a modern take on traditional Mexican dishes, featuring a variety of tacos, enchiladas, fajitas, and fresh guacamole, with options for various dietary needs.
+
+## Location & Contact
+- Address: 189 E Hartsdale Ave, Hartsdale, NY 10530, USA
+- Phone: +19147230010
+- Email: info@vegamexican.com
+- Website: https://vegamexican.com
+
+## Hours
+- Monday: 11:00 AM – 9:00 PM
+- Tuesday: 11:00 AM – 9:00 PM
+- Wednesday: 11:00 AM – 9:00 PM
+- Thursday: 11:00 AM – 9:00 PM
+- Friday: 11:00 AM – 10:00 PM
+- Saturday: 11:00 AM – 10:00 PM
+- Sunday: 11:00 AM – 9:00 PM
+
+## Action Links
+- Reserve a Table: https://resy.com/cities/hrts/vega-mexican-cuisine
+- Order Online: https://order.toasttab.com/online/vegamexicancuisine
