@@ -35,8 +35,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- KORA_FAVICON_END -->
 <!-- Canonical -->
 <link href="https://vegamexican.com" rel="canonical"/>
-<!-- Hero image preload -->
-<link as="image" href="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/medialibrary/1775476799_gh7all.jpeg" rel="preload"/>
+<!-- LLMs.txt for AI/agentic discovery -->
+<link href="/llms.txt" rel="alternate" type="text/plain" title="LLM-readable site information"/>
+<!-- Hero image preload — responsive: mobile gets smaller image via imagesrcset -->
+<link as="image" href="https://quseprdus1.blob.core.windows.net/kora-business-images/social-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/medialibrary/1775476799_gh7all.jpeg" rel="preload" fetchpriority="high"/>
+<!-- DNS prefetch for external origins -->
+<link rel="dns-prefetch" href="https://quseprdus1.blob.core.windows.net"/>
+<link rel="dns-prefetch" href="https://stream.mux.com"/>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -102,6 +109,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "@type": "AggregateRating",
     "ratingValue": "4.7",
     "reviewCount": "3"
+  },
+  "priceRange": "$$",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.012408,
+    "longitude": -73.7958676
+  },
+  "sameAs": [
+    "https://www.facebook.com/vegamexican",
+    "https://www.instagram.com/vegamexican/"
+  ],
+  "acceptsReservations": "True",
+  "menu": "https://vegamexican.com/#menu",
+  "hasMenu": {
+    "@type": "Menu",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Weekly Specials"
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Happy Hour"
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Dinner"
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Dessert"
+      }
+    ]
+  }
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VEGA Mexican Cuisine",
+  "url": "https://vegamexican.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://vegamexican.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
 }</script>
 <script type="application/ld+json">
@@ -144,8 +195,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ]
 }
 </script>
+<!-- Critical inline CSS for above-the-fold / mobile speed -->
+<style>
+/* Minimal critical path: hero, header, layout resets */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;height:auto;display:block}
+.hero-inner{opacity:0;transform:translateY(2rem);transition:opacity 1s ease,transform 1s ease}
+.hero-inner.is-loaded{opacity:1;transform:translateY(0)}
+/* content-visibility for below-fold sections — reduces initial layout/paint cost on mobile */
+#about,#menu,#press,#gallery,#reviews,#faq,#order-now,#events,#newsletter,#contact{content-visibility:auto;contain-intrinsic-size:auto 600px}
+</style>
 <link href="assets/styles.css" rel="stylesheet"/>
-<link href="style.css?v=20260610" rel="stylesheet"/>
+<link href="style.css?v=20260913" rel="stylesheet"/>
 <!-- KORA_GOOGLE_FONTS_START -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,12 +220,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="relative">
 <div class="absolute top-4 right-4 hidden lg:flex items-center gap-3 z-[60]">
 <a aria-label="Facebook" class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white hover:text-vega-purple transition-all duration-300" href="https://www.facebook.com/vegamexican" rel="noopener noreferrer" target="_blank">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
 </svg>
 </a>
 <a aria-label="Instagram" class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white hover:text-vega-purple transition-all duration-300" href="https://www.instagram.com/vegamexican/" rel="noopener noreferrer" target="_blank">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
@@ -196,14 +258,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="lg:hidden flex items-center justify-between gap-3">
 <button aria-label="Toggle menu" class="text-white p-2 z-[60] shrink-0" data-mobile-menu-btn="" type="button">
 <span data-icon-menu="">
-<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <line x1="4" x2="20" y1="12" y2="12"></line>
 <line x1="4" x2="20" y1="6" y2="6"></line>
 <line x1="4" x2="20" y1="18" y2="18"></line>
 </svg>
 </span>
 <span class="hidden" data-icon-close="">
-<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 6 6 18"></path>
 <path d="m6 6 12 12"></path>
 </svg>
@@ -881,7 +943,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </section>
 <section class="relative py-20 md:py-28 overflow-hidden" data-press-root="" id="press">
-<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465368_mhpple.jpeg')">
+<div class="absolute inset-0">
+<img alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" decoding="async" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465368_mhpple.jpeg" width="1920" height="1080"/>
 <div class="absolute inset-0 bg-black/50"></div>
 </div>
 <div class="relative z-10 container mx-auto px-4">
@@ -891,12 +954,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </h2>
 <div class="js-reveal js-reveal-delay relative max-w-3xl mx-auto">
 <button aria-label="Previous award" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 z-20 w-12 h-12 flex items-center justify-center text-white/70 hover:text-white transition-colors duration-300" data-press-prev="" type="button">
-<svg fill="none" height="48" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="48" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
 <path d="m15 18-6-6 6-6"></path>
 </svg>
 </button>
 <button aria-label="Next award" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 z-20 w-12 h-12 flex items-center justify-center text-white/70 hover:text-white transition-colors duration-300" data-press-next="" type="button">
-<svg fill="none" height="48" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="48" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
 <path d="m9 18 6-6-6-6"></path>
 </svg>
 </button>
@@ -947,35 +1010,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </h2>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
 <div aria-label="View image: VEGA Restaurant Interior" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 0ms" tabindex="0">
-<img alt="VEGA Restaurant Interior" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465443_j90zs5.jpeg" width="400"/>
+<img alt="VEGA Restaurant Interior" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465443_j90zs5.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Dining Area" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 100ms" tabindex="0">
-<img alt="VEGA Dining Area" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465477_ffdoaa.jpeg" width="400"/>
+<img alt="VEGA Dining Area" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465477_ffdoaa.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Restaurant Space" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 200ms" tabindex="0">
-<img alt="VEGA Restaurant Space" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465486_ydzdh6.jpeg" width="400"/>
+<img alt="VEGA Restaurant Space" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465486_ydzdh6.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Private Dining" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 300ms" tabindex="0">
-<img alt="VEGA Private Dining" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465495_yn323g.jpeg" width="400"/>
+<img alt="VEGA Private Dining" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465495_yn323g.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Appetizers" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 400ms" tabindex="0">
-<img alt="VEGA Appetizers" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465515_uk2fzf.jpeg" width="400"/>
+<img alt="VEGA Appetizers" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465515_uk2fzf.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Main Course" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 500ms" tabindex="0">
-<img alt="VEGA Main Course" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465532_yaives.jpeg" width="400"/>
+<img alt="VEGA Main Course" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465532_yaives.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Steak Dish" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 600ms" tabindex="0">
-<img alt="VEGA Steak Dish" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465551_h723pc.jpeg" width="400"/>
+<img alt="VEGA Steak Dish" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465551_h723pc.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 <div aria-label="View image: VEGA Cocktails" class="gallery-item group relative overflow-hidden aspect-[4/3] cursor-pointer" data-gallery-item="" role="button" style="transition-delay: 700ms" tabindex="0">
-<img alt="VEGA Cocktails" class="w-full h-full object-cover transition-transform duration-500" height="300" loading="lazy" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465560_c3sv9u.jpeg" width="400"/>
+<img alt="VEGA Cocktails" class="w-full h-full object-cover transition-transform duration-500" decoding="async" height="300" loading="lazy" sizes="(max-width: 767px) 50vw, 25vw" src="https://quseprdus1.blob.core.windows.net/kora-business-images/user-media/9dfad46d-d519-43a5-95e8-beb6c7251a3b/de8c94d8-887e-4625-825f-ec262dbc28df/1775465560_c3sv9u.jpeg" width="400"/>
 <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300"></div>
 </div>
 </div>
@@ -991,11 +1054,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Review 1 -->
 <div class="js-reveal bg-vega-bg-light p-6 rounded-lg shadow-lg">
 <div class="flex items-center mb-4 text-[#F59E0B]">
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
 </div>
 <p class="text-gray-700 italic mb-4">"Absolutely fantastic! The guacamole is made tableside and is a must-try. Great atmosphere and even better margaritas. A true gem in Hartsdale!"</p>
 <p class="font-semibold text-gray-800 text-right">- Alex R.</p>
@@ -1003,11 +1066,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Review 2 -->
 <div class="js-reveal bg-vega-bg-light p-6 rounded-lg shadow-lg" style="transition-delay: 150ms;">
 <div class="flex items-center mb-4 text-[#F59E0B]">
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
 </div>
 <p class="text-gray-700 italic mb-4">"VEGA is our go-to for Mexican food. The carnitas are to die for, and the service is always top-notch. The modern vibe is perfect for a date night or a fun evening with friends."</p>
 <p class="font-semibold text-gray-800 text-right">- Samantha G.</p>
@@ -1015,11 +1078,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Review 3 -->
 <div class="js-reveal bg-vega-bg-light p-6 rounded-lg shadow-lg" style="transition-delay: 300ms;">
 <div class="flex items-center mb-4 text-[#F59E0B]">
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-<svg class="w-5 h-5 text-gray-300" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
 </div>
 <p class="text-gray-700 italic mb-4">"Great food and a lively atmosphere. It can get a bit loud on weekends, but that's part of the fun. The churrasco was cooked perfectly. Will be back!"</p>
 <p class="font-semibold text-gray-800 text-right">- Mike D.</p>
@@ -1038,7 +1101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="js-reveal border border-gray-300 rounded-lg overflow-hidden bg-white">
 <button class="w-full flex justify-between items-center text-left p-4 md:p-5 hover:bg-[#F9FAFB] transition-colors" data-faq-question="">
 <span class="font-semibold text-gray-800">Do you take reservations?</span>
-<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="hidden" data-faq-answer="">
 <div class="p-4 md:p-5 border-t border-gray-200 text-gray-700">
@@ -1050,7 +1113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="js-reveal border border-gray-300 rounded-lg overflow-hidden bg-white">
 <button class="w-full flex justify-between items-center text-left p-4 md:p-5 hover:bg-[#F9FAFB] transition-colors" data-faq-question="">
 <span class="font-semibold text-gray-800">Do you offer vegetarian or gluten-free options?</span>
-<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="hidden" data-faq-answer="">
 <div class="p-4 md:p-5 border-t border-gray-200 text-gray-700">
@@ -1062,7 +1125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="js-reveal border border-gray-300 rounded-lg overflow-hidden bg-white">
 <button class="w-full flex justify-between items-center text-left p-4 md:p-5 hover:bg-[#F9FAFB] transition-colors" data-faq-question="">
 <span class="font-semibold text-gray-800">Is there parking available?</span>
-<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="hidden" data-faq-answer="">
 <div class="p-4 md:p-5 border-t border-gray-200 text-gray-700">
@@ -1074,7 +1137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="js-reveal border border-gray-300 rounded-lg overflow-hidden bg-white">
 <button class="w-full flex justify-between items-center text-left p-4 md:p-5 hover:bg-[#F9FAFB] transition-colors" data-faq-question="">
 <span class="font-semibold text-gray-800">Can you accommodate large parties or private events?</span>
-<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="hidden" data-faq-answer="">
 <div class="p-4 md:p-5 border-t border-gray-200 text-gray-700">
@@ -1121,14 +1184,14 @@ We are also on UberEats, DoorDash and GrubHub.
 <!-- Calendar nav -->
 <div class="flex items-center justify-between mb-4 gap-2">
 <button aria-label="Previous month" class="w-9 h-9 flex items-center justify-center rounded-full border border-purple-200 text-primary hover:bg-primary hover:text-white transition-colors duration-300" id="evt-cal-prev" type="button">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="m15 18-6-6 6-6"></path></svg>
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="m15 18-6-6 6-6"></path></svg>
 </button>
 <div class="flex items-center gap-3">
 <span class="text-lg font-semibold text-gray-800 tracking-wide" id="evt-cal-label"></span>
 <button class="px-3 py-1 text-xs font-semibold tracking-[0.12em] uppercase rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300" id="evt-cal-today" type="button">Today</button>
 </div>
 <button aria-label="Next month" class="w-9 h-9 flex items-center justify-center rounded-full border border-purple-200 text-primary hover:bg-primary hover:text-white transition-colors duration-300" id="evt-cal-next" type="button">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="m9 18 6-6-6-6"></path></svg>
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="m9 18 6-6-6-6"></path></svg>
 </button>
 </div>
 <!-- Day-of-week headers -->
@@ -1157,7 +1220,7 @@ We are also on UberEats, DoorDash and GrubHub.
 <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="evt-modal-backdrop"></div>
 <div class="relative z-10 bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
 <button aria-label="Close event details" class="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/20 text-white hover:bg-primary transition-colors duration-300" id="evt-modal-close" type="button">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M18 6 6 18M6 6l12 12"></path></svg>
 </button>
 <img alt="Event photo from VEGA Mexican Cuisine" class="w-full h-52 object-cover rounded-t-xl" id="evt-modal-img" src="" style="display:none"/>
 <div class="p-6">
@@ -1165,11 +1228,11 @@ We are also on UberEats, DoorDash and GrubHub.
 <h3 class="text-2xl font-serif text-primary mb-2" id="evt-modal-title"></h3>
 <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mb-4">
 <span class="flex items-center gap-1" id="evt-modal-date">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
 <span id="evt-modal-date-text"></span>
 </span>
 <span class="flex items-center gap-1" id="evt-modal-loc">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 <span id="evt-modal-loc-text"></span>
 </span>
 </div>
@@ -1177,7 +1240,7 @@ We are also on UberEats, DoorDash and GrubHub.
 <div class="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-5" id="evt-modal-full"></div>
 <a class="hidden inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-vega-purple transition-colors duration-300 hover:scale-105" href="#" id="evt-modal-cta" rel="noopener noreferrer" target="_blank">
         Reserve a Table
-        <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
 </a>
 </div>
 </div>
@@ -1521,7 +1584,7 @@ We are also on UberEats, DoorDash and GrubHub.
 <p class="newsletter-section__text">Special offers and updates, straight to your inbox.</p>
 <a class="newsletter-section__cta" href="https://www.toasttab.com/vegamexicancuisine/marketing-signup" rel="noopener noreferrer" target="_blank">
 <span>Subscribe Now</span>
-<svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg>
 </a>
@@ -1538,7 +1601,7 @@ We are also on UberEats, DoorDash and GrubHub.
 </h3>
 <div class="space-y-1 text-gray-700">
 <p class="flex items-center justify-center md:justify-start gap-2">
-<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
 <circle cx="12" cy="10" r="3"></circle>
 </svg>
@@ -1548,19 +1611,19 @@ We are also on UberEats, DoorDash and GrubHub.
 </div>
 <div class="flex items-center justify-center md:justify-start gap-3 mt-4">
 <a aria-label="Facebook" class="w-10 h-10 rounded-full border-2 border-gray-400 flex items-center justify-center text-gray-600 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300" href="https://www.facebook.com/vegamexican" rel="noopener noreferrer" target="_blank">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
 </svg>
 </a>
 <a aria-label="Instagram" class="w-10 h-10 rounded-full border-2 border-gray-400 flex items-center justify-center text-gray-600 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300" href="https://www.instagram.com/vegamexican/" rel="noopener noreferrer" target="_blank">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
 <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
 </svg>
 </a>
 <a aria-label="Google Maps" class="w-10 h-10 rounded-full border-2 border-gray-400 flex items-center justify-center text-gray-600 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300" href="https://www.google.com/maps/place/VEGA+Mexican+Cuisine/@41.012408,-73.7958676,15z/data=!4m5!3m4!1s0x0:0xea814ff113fb7ada!8m2!3d41.012408!4d-73.7958676" rel="noopener noreferrer" target="_blank">
-<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
 <title>Google Maps</title>
 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z">
 </path>
@@ -1575,14 +1638,14 @@ We are also on UberEats, DoorDash and GrubHub.
 </h3>
 <div class="space-y-3 text-gray-700">
 <a class="flex items-center justify-center md:justify-start gap-2 hover:text-primary transition-colors duration-300" href="tel:9147230010">
-<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
 </path>
 </svg>
                 (914) 723-0010
               </a>
 <a class="flex items-center justify-center md:justify-start gap-2 hover:text-primary transition-colors duration-300" href="mailto:info@vegamexican.com">
-<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <rect height="16" rx="2" width="20" x="2" y="4"></rect>
 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
 </svg>
@@ -1597,7 +1660,7 @@ We are also on UberEats, DoorDash and GrubHub.
 </h3>
 <div class="space-y-1 text-gray-700">
 <p class="flex items-center justify-center md:justify-start gap-2">
-<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<svg class="text-primary shrink-0" fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <circle cx="12" cy="12" r="10"></circle>
 <polyline points="12 6 12 12 16 14"></polyline>
 </svg>
@@ -1611,7 +1674,7 @@ We are also on UberEats, DoorDash and GrubHub.
 </div>
 </footer>
 <button aria-label="Scroll to top" class="fixed bottom-8 right-8 z-50 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-500 hover:bg-primary-dark hover:scale-110 opacity-0 translate-y-10 pointer-events-none" data-scroll-top="" type="button">
-<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <path d="m18 15-6-6-6 6"></path>
 </svg>
 </button>
@@ -1620,7 +1683,7 @@ We are also on UberEats, DoorDash and GrubHub.
 <div class="subscribe-popup__backdrop" data-subscribe-close=""></div>
 <div class="subscribe-popup__panel promo-popup__panel">
 <button aria-label="Close promo popup" class="subscribe-popup__close promo-popup__close" data-subscribe-close="" type="button">
-<svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+<svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 6 6 18M6 6l12 12"></path>
 </svg>
 </button>
@@ -1631,17 +1694,17 @@ We are also on UberEats, DoorDash and GrubHub.
 </div>
 <div aria-hidden="true" aria-label="Gallery image viewer" aria-modal="true" class="gallery-lightbox" data-gallery-lightbox="" hidden="" role="dialog">
 <button aria-label="Close gallery" class="gallery-lightbox__btn gallery-lightbox__close" data-gallery-close="" type="button">
-<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 6 6 18M6 6l12 12"></path>
 </svg>
 </button>
 <button aria-label="Previous image" class="gallery-lightbox__btn gallery-lightbox__nav gallery-lightbox__prev" data-gallery-prev="" type="button">
-<svg aria-hidden="true" fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<svg aria-hidden="true" fill="none" height="28" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
 <path d="m15 18-6-6 6-6"></path>
 </svg>
 </button>
 <button aria-label="Next image" class="gallery-lightbox__btn gallery-lightbox__nav gallery-lightbox__next" data-gallery-next="" type="button">
-<svg aria-hidden="true" fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<svg aria-hidden="true" fill="none" height="28" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
 <path d="m9 18 6-6-6-6"></path>
 </svg>
 </button>
@@ -1654,7 +1717,7 @@ We are also on UberEats, DoorDash and GrubHub.
 <p class="gallery-lightbox__counter" data-gallery-counter=""></p>
 </div>
 </div>
-<script src="js/main.js"></script>
+<script src="js/main.js" defer=""></script>
 <!-- Accessibility Widget -->
 <script>
   window.ACCESSIBILITY_WIDGET_CONFIG = {
