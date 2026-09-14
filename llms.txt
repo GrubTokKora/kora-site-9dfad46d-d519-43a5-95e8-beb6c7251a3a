@@ -1,57 +1,31 @@
 # VEGA Mexican Cuisine
 
-> VEGA Mexican Cuisine — EAT. DRINK. FIESTA. Authentic Mexican restaurant in Hartsdale, Westchester County, NY.
-
-## About
-VEGA Mexican Cuisine is a contemporary Mexican restaurant located at 189 E Hartsdale Ave, Hartsdale, NY 10530. Founded to share a love of all things Mexican — the food, the music, the culture — VEGA offers a modern take on traditional Mexican dishes in a striking, relaxed atmosphere. VEGA is widely recognized as one of the best Mexican restaurants in Westchester County, featured by The New York Times, Westchester Magazine ("Best of Westchester"), Lohud ("Top 5 Stylish Restaurant"), and FiOS1 Restaurant Hunter.
-
-## Menu Highlights
-- **Signature Dishes:** Tableside Guacamole, Churrasco (skirt steak with chimichurri), Carnitas, Salmon Yucatan, Shrimp Diabla, Chipotle Chicken
-- **Classics:** Tacos (chicken, steak, birria, pastor, shrimp, fish), Burritos, Enchiladas, Fajitas, Quesadillas, Chimichangas
-- **Small Plates:** Wings of Fire, Loaded Nachos, Avocado Fritters, Ceviche, Coco Loco Shrimp, Mexican Street Corn, Cancun Calamari
-- **Desserts:** Churros, Mexican Choco Tres Leche, Fried Ice Cream, Flan
-- **Drinks:** Classic Margaritas, Craft Cocktails, Mexican Beer, Sangria, Wine
-- **Weekly Specials:** Taco Tuesday, Wine Wednesday, Gentlemen's Night Monday, Ladies Night Thursday
-- **Happy Hour:** Monday–Friday 4PM–7PM (discounted bites and drinks)
-- **Kids Menu:** Chicken Fingers, Cheese Quesadilla, Ground Beef Cheese Taco
-
-## Dietary Information
-- Vegetarian options available
-- Gluten-free options available (corn tortillas are 100% gluten-free)
-- Dietary restrictions accommodated upon request
-
-## Catering
-VEGA caters events across Westchester County including weddings, corporate gatherings, birthday parties, and private events. Full-service catering with authentic Mexican cuisine.
+> EAT. DRINK. FIESTA. A modern take on traditional Mexican cuisine in Hartsdale, Westchester County, NY.
 
 ## Location & Contact
-- **Address:** 189 E Hartsdale Ave, Hartsdale, NY 10530, USA
-- **Phone:** (914) 723-0010
-- **Email:** info@vegamexican.com
-- **Website:** https://vegamexican.com
+- Address: 189 E Hartsdale Ave, Hartsdale, NY 10530, USA
+- Phone: (914) 723-0010
+- Email: info@vegamexican.com
+- Website: https://vegamexican.com
 
 ## Hours
 - Monday–Thursday: 11:30 AM – 9:30 PM
 - Friday–Saturday: 11:30 AM – 10:00 PM
 - Sunday: 11:30 AM – 9:00 PM
 
-## Action Links
-- **Reserve a Table:** https://resy.com/cities/hrts/vega-mexican-cuisine
-- **Order Online:** https://order.toasttab.com/online/vegamexicancuisine
-- **Gift Cards:** https://www.toasttab.com/vegamexicancuisine/giftcards
-- **Catering Inquiries:** https://vegamexican.com/catering
+## Pages
+- [Home / Menu](https://vegamexican.com/#menu): Tacos, enchiladas, fajitas, guacamole, weekly specials, happy hour
+- [Catering](https://vegamexican.com/catering): Private events, weddings, corporate gatherings
+- [Hiring](https://vegamexican.com/hiring): Open positions
 
-## Social Media
-- **Facebook:** https://www.facebook.com/vegamexican
-- **Instagram:** https://www.instagram.com/vegamexican/
+## Ordering & Reservations
+- [Reserve a table](https://resy.com/cities/hrts/vega-mexican-cuisine)
+- [Order online](https://order.toasttab.com/online/vegamexicancuisine)
+- [Gift cards](https://www.toasttab.com/vegamexicancuisine/giftcards)
 
-## Press & Awards
-- The New York Times: "Real Mexican Cuisine, Right Down to Dessert"
-- Westchester Magazine: "Best of Westchester"
-- Lohud: "Top 5 Stylish Restaurant"
-- FiOS1 Restaurant Hunter: Signature Dish Feature
+## Social
+- [Facebook](https://www.facebook.com/vegamexican)
+- [Instagram](https://www.instagram.com/vegamexican/)
 
-## FAQ
-- **Reservations:** Yes, recommended especially for weekends. Book via Resy or call directly.
-- **Parking:** Street parking on Hartsdale Ave and nearby side streets; municipal lots available.
-- **Private Events:** Available for large parties, celebrations, and corporate gatherings.
-- **Delivery:** Available via UberEats, DoorDash, GrubHub, and direct ordering through Toast.
+## Optional
+- Press: featured by The New York Times, Westchester Magazine ("Best of Westchester"), Lohud ("Top 5 Stylish Restaurant"), FiOS1 Restaurant Hunter.
