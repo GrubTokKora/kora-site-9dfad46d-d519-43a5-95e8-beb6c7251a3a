@@ -417,36 +417,6 @@ window.VEGA_CONFIG = {
     hObs.observe(hoursBanner);
   }
 
-  /* Menu tabs */
-  var menuRoot = document.querySelector('[data-menu-root]');
-  if (menuRoot) {
-    var buttons = menuRoot.querySelectorAll('[data-menu-tab]');
-    var panels = menuRoot.querySelectorAll('[data-menu-panel]');
-    function activate(id) {
-      buttons.forEach(function (b) {
-        var active = b.getAttribute('data-menu-tab') === id;
-        b.classList.toggle('bg-primary', active);
-        b.classList.toggle('text-white', active);
-        b.classList.toggle('border-primary', active);
-        b.classList.toggle('shadow-sm', active);
-        b.classList.toggle('border-purple-200', !active);
-        b.classList.toggle('bg-white/80', !active);
-        b.classList.toggle('text-gray-800', !active);
-      });
-      panels.forEach(function (p) {
-        var show = p.getAttribute('data-menu-panel') === id;
-        p.classList.toggle('is-active', show);
-      });
-    }
-    var initial = 'menu-weekly';
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        activate(btn.getAttribute('data-menu-tab'));
-      });
-    });
-    activate(initial);
-  }
-
   /* Press carousel */
   var track = document.querySelector('[data-press-track]');
   var pressRoot = document.querySelector('[data-press-root]');

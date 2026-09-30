@@ -199,14 +199,49 @@ html {
   flex-shrink: 0;
 }
 
-/* Menu panel visibility */
-.menu-panel {
-  display: none;
+/* Menus: drawn by Kora into the kora:data:menu region; these rules give them this site's look. */
+.vega-menu { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+.kora-menu .kora-menu__switcher { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem auto 0; padding: 0.75rem 1rem; }
+.kora-menu .kora-menu__switcher a {
+  white-space: nowrap; padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #e9d5ff; background: rgba(255,255,255,.8);
+  color: #1f2937; font-size: 0.75rem; line-height: 1rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; transition: color .3s, background-color .3s, border-color .3s;
 }
-
-.menu-panel.is-active {
-  display: block;
+@media (min-width: 768px) { .kora-menu .kora-menu__switcher a { padding: 0.5rem 1.25rem; font-size: 0.875rem; line-height: 1.25rem; } }
+.kora-menu .kora-menu__switcher a:hover { background: #9b4d9e; color: #fff; border-color: #9b4d9e; }
+.kora-menu .kora-menu__switcher a[aria-current="true"] { background: #9b4d9e; color: #fff; border-color: #9b4d9e; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+.kora-menu .kora-menu__menu { display: flex; flex-direction: column; margin: 0; padding: 2.5rem 0; }
+@media (min-width: 768px) { .kora-menu .kora-menu__menu { padding: 3.5rem 0; } }
+.kora-menu .kora-menu__menu-title { order: 0; text-align: center; margin: 0 0 2rem; font-size: 1.25rem; line-height: 1.75rem; letter-spacing: 0.3em; color: #9b4d9e; text-transform: uppercase; font-weight: 400; }
+@media (min-width: 768px) { .kora-menu .kora-menu__menu-title { font-size: 1.5rem; line-height: 2rem; } }
+.kora-menu .kora-menu__availability { order: 1; text-align: center; margin: -1.25rem 0 1.5rem; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #374151; opacity: 1; }
+.kora-menu .kora-menu__menu-desc { order: 99; text-align: center; margin: 2rem 0 0; font-size: 0.875rem; color: #f97316; opacity: 1; }
+.kora-menu .kora-menu__nav { display: none; }
+.kora-menu .kora-menu__section { order: 2; margin: 0 0 2.5rem; }
+.kora-menu .kora-menu__section:only-of-type .kora-menu__section-title { display: none; }
+.kora-menu .kora-menu__section-title { font-size: 1.125rem; line-height: 1.75rem; letter-spacing: 0.25em; color: #111827; text-transform: uppercase; font-weight: 400; margin: 0 0 0.75rem; }
+.kora-menu .kora-menu__items { display: flex; flex-direction: column; gap: 0.75rem; }
+.kora-menu .kora-menu__item { display: block; padding-bottom: 0.25rem; border-bottom: 1px dotted #d8b4fe; }
+.kora-menu .kora-menu__item-body { display: grid; grid-template-columns: 1fr auto; column-gap: 1rem; align-items: start; }
+.kora-menu .kora-menu__item-head { display: contents; }
+.kora-menu .kora-menu__item-name { grid-column: 1; margin: 0; font-family: inherit; font-weight: 600; letter-spacing: 0.025em; color: #111827; text-transform: uppercase; font-size: 0.875rem; line-height: 1.25rem; }
+.kora-menu .kora-menu__item-price { grid-column: 2; grid-row: 1 / span 2; font-weight: 600; color: #9b4d9e; font-size: 0.875rem; line-height: 1.25rem; white-space: nowrap; }
+.kora-menu .kora-menu__item-desc { grid-column: 1; margin: 0.125rem 0 0; font-size: 0.75rem; line-height: 1rem; color: #374151; opacity: 1; }
+@media (min-width: 768px) {
+  .kora-menu .kora-menu__item-name, .kora-menu .kora-menu__item-price { font-size: 1rem; line-height: 1.5rem; }
+  .kora-menu .kora-menu__item-desc { font-size: 0.875rem; line-height: 1.25rem; }
 }
+/* Weekly specials and desserts sit in two columns, happy hour in two, dinner in three. */
+@media (min-width: 768px) {
+  #menu-weekly-specials .kora-menu__items { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2.5rem; }
+  #menu-happy-hour, #menu-dessert { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2.5rem; }
+  #menu-happy-hour > .kora-menu__menu-title, #menu-happy-hour > .kora-menu__availability,
+  #menu-dessert > .kora-menu__menu-title, #menu-dessert > .kora-menu__menu-desc { grid-column: 1 / -1; }
+}
+@media (min-width: 1024px) {
+  #menu-dinner-menu { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 2.5rem; }
+  #menu-dinner-menu > .kora-menu__menu-title { grid-column: 1 / -1; }
+}
+#menu-dessert > .kora-menu__menu-title { display: none; }
 
 /* Gallery lightbox */
 .gallery-lightbox:not([hidden]) {
