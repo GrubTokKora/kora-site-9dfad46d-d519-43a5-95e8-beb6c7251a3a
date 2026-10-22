@@ -1,31 +1,34 @@
 # VEGA Mexican Cuisine
 
-> EAT. DRINK. FIESTA. A modern take on traditional Mexican cuisine in Hartsdale, Westchester County, NY.
+> VEGA Mexican Cuisine, located at 189 E Hartsdale Ave in Hartsdale, NY, offers a modern take on traditional Mexican dishes with options for various dietary needs. The restaurant features a variety of tacos, enchiladas, fajitas, and fresh guacamole.
+
+## Menu
+VEGA Mexican Cuisine offers a modern take on traditional Mexican dishes, featuring a variety of tacos, enchiladas, fajitas, and fresh guacamole, with options for various dietary needs.
 
 ## Location & Contact
 - Address: 189 E Hartsdale Ave, Hartsdale, NY 10530, USA
-- Phone: (914) 723-0010
+- Phone: +19147230010
 - Email: info@vegamexican.com
 - Website: https://vegamexican.com
 
 ## Hours
-- Monday–Thursday: 11:30 AM – 9:30 PM
-- Friday–Saturday: 11:30 AM – 10:00 PM
+- Monday: 11:30 AM – 9:30 PM
+- Tuesday: 11:30 AM – 9:30 PM
+- Wednesday: 11:30 AM – 9:30 PM
+- Thursday: 11:30 AM – 9:30 PM
+- Friday: 11:30 AM – 10:00 PM
+- Saturday: 11:30 AM – 10:00 PM
 - Sunday: 11:30 AM – 9:00 PM
 
 ## Pages
-- [Home / Menu](https://vegamexican.com/#menu): Tacos, enchiladas, fajitas, guacamole, weekly specials, happy hour
-- [Catering](https://vegamexican.com/catering): Private events, weddings, corporate gatherings
-- [Hiring](https://vegamexican.com/hiring): Open positions
+- [VEGA Mexican Cuisine | Tacos Westchester – Hartsdale, Westchester NY](https://vegamexican.com/)
+- [Catering by VEGA](https://vegamexican.com/catering)
+- [WE ARE HIRING!](https://vegamexican.com/hiring)
 
-## Ordering & Reservations
-- [Reserve a table](https://resy.com/cities/hrts/vega-mexican-cuisine)
-- [Order online](https://order.toasttab.com/online/vegamexicancuisine)
-- [Gift cards](https://www.toasttab.com/vegamexicancuisine/giftcards)
+## Action Links
+- [Reserve a Table](https://resy.com/cities/hrts/vega-mexican-cuisine)
+- [Order Online](https://order.toasttab.com/online/vegamexicancuisine)
 
 ## Social
-- [Facebook](https://www.facebook.com/vegamexican)
 - [Instagram](https://www.instagram.com/vegamexican/)
-
-## Optional
-- Press: featured by The New York Times, Westchester Magazine ("Best of Westchester"), Lohud ("Top 5 Stylish Restaurant"), FiOS1 Restaurant Hunter.
+- [Facebook](https://www.facebook.com/vegamexican)
