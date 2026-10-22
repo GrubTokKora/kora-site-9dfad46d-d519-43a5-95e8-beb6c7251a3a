@@ -26,7 +26,7 @@
   --font-serif: "Libre Baskerville", Georgia, serif;
   --font-sans: "Josefin Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: Oswald, ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--kora-font-heading, Oswald), ui-sans-serif, system-ui, sans-serif;
   --font-script: "Great Vibes", "Dancing Script", cursive;
 
   /* Nav used `text-md` under CDN extend; keep a sensible size */
