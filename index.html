@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* Minimal critical path: hero, header, layout resets */
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;-webkit-font-smoothing:antialiased}
-img,video{max-width:100%;height:auto;display:block}
+@layer base{img,video{max-width:100%;height:auto;display:block}}
 .hero-inner{opacity:0;transform:translateY(2rem);transition:opacity 1s ease,transform 1s ease}
 .hero-inner.is-loaded{opacity:1;transform:translateY(0)}
 /* content-visibility for below-fold sections — reduces initial layout/paint cost on mobile */
